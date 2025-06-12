@@ -200,7 +200,7 @@ body.loaded .motto {
   50% {
     opacity: 0.60;
   }
-}
+} 
 
 @media (max-width: 600px) {
   .links {
@@ -217,5 +217,18 @@ body.loaded .motto {
   .icon-img {
     margin-bottom: -2px;
     object-fit: contain;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .links a:hover {
+    transform: scale(1.2);
+    color: #bbb;
+    background-color: transparent !important;
+  }
+
+  .links a:hover .icon {
+    transform: scale(1.2);
+    filter: brightness(80%);
   }
 }
