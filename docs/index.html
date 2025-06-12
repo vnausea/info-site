@@ -20,6 +20,14 @@
     <source src="background.mp4" type="video/mp4">
   </video>
 
+  <script>
+    const video = document.getElementById("bg-video");
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible" && video.paused) {
+        video.play().catch(() => {});
+      }
+    });
+  </script>
 
 
   <div class="content">
@@ -61,6 +69,14 @@
     setInterval(updateClock, 1000);
     updateClock();
   </script>
+
+  <script>
+    document.addEventListener("touchstart", function() {
+      const hovered = document.querySelectorAll(".links a:hover");
+      hovered.forEach(el => el.blur());
+    });
+  </script>
+
 
 </body>
 </html>
