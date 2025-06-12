@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" href="profile.jpg" type="image/jpg">
+
 </head>
 
 <script>
@@ -16,24 +17,28 @@
 </script>
 
 <body>
-  <video class="bg-video" autoplay muted loop playsinline poster="poster.jpg">
+  <video id="bg-video" class="bg-video" autoplay muted loop playsinline poster="poster.jpg">
     <source src="background.mp4" type="video/mp4">
   </video>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", function () {
       const video = document.getElementById("bg-video");
 
-      document.addEventListener("visibilitychange", () => {
+      function tryPlay() {
+        if (video && video.paused) {
+          video.play().catch(() => {});
+        }
+      }
+
+      document.addEventListener("visibilitychange", function () {
         if (document.visibilityState === "visible") {
-          if (document.activeElement) {
-            document.activeElement.blur();
-          }
-          if (video && video.paused) {
-            video.play().catch(() => {});
-          }
+          tryPlay();
         }
       });
+
+      video.addEventListener('ended', tryPlay);
+      video.addEventListener('pause', tryPlay);
     });
   </script>
 
@@ -41,31 +46,26 @@
     <img src="profile.jpg" alt="nausea" class="avatar">
     <h1>nausea</h1>
     <p class="tagline tagline-current">
-    Current Wave Community Manager
+      Current Wave Community Manager
     </p>
     <p class="tagline tagline-former">
-    Former Data Analyst, Licensing Manager & Community Manager at Synapse Softworks LLC
+      Former Data Analyst, Licensing Manager & Community Manager at Synapse Softworks LLC
     </p>
 
-
     <p class="details">Generally available 6PM – 5AM EST</p>
-
     <p class="motto">"Speak only if it improves upon silence."</p>
 
     <div class="links">
-        <a href="https://discord.com/users/1367938209622786049" target="_blank" title="Discord">
-            <i class="fab fa-discord icon"></i>
-        </a>
-        <a href="https://getwave.gg/resellers" target="_blank" title="Buy Wave">
-            <img src="wave.png" alt="Wave" class="icon icon-img" />
-        </a>
+      <a href="https://discord.com/users/1367938209622786049" target="_blank" title="Discord">
+        <i class="fab fa-discord icon"></i>
+      </a>
+      <a href="https://getwave.gg/resellers" target="_blank" title="Buy Wave">
+        <img src="wave.png" alt="Wave" class="icon icon-img" />
+      </a>
     </div>
-
-
   </div>
 
   <div class="clock" id="clock"></div>
-  <!-- <footer>&copy; sybau</footer> -->
 
   <script>
     function updateClock() {
@@ -76,13 +76,5 @@
     setInterval(updateClock, 1000);
     updateClock();
   </script>
-
-  <script>
-    document.addEventListener("touchstart", function() {
-      const hovered = document.querySelectorAll(".links a:hover");
-      hovered.forEach(el => el.blur());
-    });
-  </script>
-
 </body>
 </html>
