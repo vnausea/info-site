@@ -1,0 +1,221 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+
+.bg-video {
+  filter: brightness(0.3) blur(4px);
+  height: 100vh;
+  left: 50%;
+  object-fit: cover;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  z-index: -1;
+}
+
+.content {
+  max-width: 900px;
+  padding: 20px;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.avatar {
+  animation: pulseGlow 3s ease-in-out infinite;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(237, 196, 106, 0.3), 0 0 60px rgba(226, 178, 72, 0.15);
+  height: 130px;
+  margin-bottom: 20px;
+  object-fit: cover;
+  width: 130px;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 255, 200, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 200, 0.4);
+  }
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.tagline {
+  color: #ccc;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 5px 0;
+}
+
+.tagline-current {
+  margin-top: 10px;
+}
+
+.tagline-former {
+  color: #bbb;
+  font-size: 0.95rem;
+}
+
+.details {
+  color: #aaa;
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-top: 5px;
+}
+
+.clock {
+  color: #aaa;
+  font-size: 0.95rem;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  animation: slideClock 1s ease;
+}
+
+@keyframes slideClock {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+footer {
+  bottom: 10px;
+  color: #888;
+  font-size: 0.8rem;
+  position: absolute;
+  width: 100%;
+}
+
+.links {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.links a {
+  all: unset;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.4rem;
+  margin: 0 10px;
+  transition: transform 0.2s ease, color 0.2s ease, background 0.3s ease;
+}
+
+.links a:hover {
+  background-color: transparent !important;
+  color: #bbb;
+  transform: scale(1.2);
+}
+
+.links a:hover,
+.links a:focus,
+.links a i:hover,
+.links a i:focus {
+  background-color: transparent !important;
+}
+
+.links a:hover .icon {
+  filter: brightness(80%);
+  transform: scale(1.2);
+}
+
+.icon {
+  display: inline-block;
+  font-size: 1.8rem;
+  height: 1em;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  vertical-align: middle;
+  width: 1em;
+}
+
+.icon-img {
+  filter: brightness(100%);
+  margin-bottom: -2px;
+  object-fit: contain;
+  pointer-events: auto;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.motto {
+  font-size: 0.95rem;
+  color: #ccc;
+  font-weight: 300;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 2.2s ease 2s;
+  margin-top: 0;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.25); /* static glow */
+}
+
+body.loaded .motto {
+  opacity: 1;
+  max-height: 100px;
+  margin-top: 15px;
+  animation: pulseOpacity 4s ease-in-out infinite;
+}
+
+@keyframes pulseOpacity {
+  0%, 100% {
+    opacity: 0.30;
+  }
+  50% {
+    opacity: 0.60;
+  }
+}
+
+@media (max-width: 600px) {
+  .links {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .icon {
+    font-size: 1.6rem;
+    height: 1.6rem;
+    width: 1.6rem;
+  }
+
+  .icon-img {
+    margin-bottom: -2px;
+    object-fit: contain;
+  }
+}
