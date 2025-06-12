@@ -21,14 +21,21 @@
   </video>
 
   <script>
-    const video = document.getElementById("bg-video");
-    document.addEventListener("visibilitychange", function () {
-      if (document.visibilityState === "visible" && video.paused) {
-        video.play().catch(() => {});
-      }
+    document.addEventListener("DOMContentLoaded", () => {
+      const video = document.getElementById("bg-video");
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible") {
+          if (document.activeElement) {
+            document.activeElement.blur();
+          }
+          if (video && video.paused) {
+            video.play().catch(() => {});
+          }
+        }
+      });
     });
   </script>
-
 
   <div class="content">
     <img src="profile.jpg" alt="nausea" class="avatar">
@@ -76,7 +83,6 @@
       hovered.forEach(el => el.blur());
     });
   </script>
-
 
 </body>
 </html>
